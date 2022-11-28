@@ -52,7 +52,7 @@ for day in config.days + [config.max_day]:
     internal_af_merge[f'day_{config.max_day}_target_cumulative_revenue']=internal_af_merge['cost'] #target at day 270 is to reach cost
 
 internal_af_merge.to_csv('internal_af_merge.csv', index=False)
-
+internal_af_merge = internal_af_merge[internal_af_merge['predicted_cumulative_revenue'].notnull()]
 print('starting upload')
 
 su.snowflake_upload(internal_af_merge)
